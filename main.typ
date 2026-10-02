@@ -46,8 +46,56 @@
   leading: 0.58em,
   first-line-indent: 1.5em,
 )
-#show raw: set text(font: ("DejaVu Sans Mono", "Courier New"), size: 8.5pt)
+#show raw: set text(font: ("DejaVu Sans Mono", "Courier New"), size: 8.2pt)
 #show math.equation: set text(font: "New Computer Modern Math")
+
+// Enhanced code presentation: distinct container, left accent border, and language badge
+#show raw.where(block: false): it => box(
+  fill: rgb("#f3f4f6"),
+  inset: (x: 3.5pt, y: 0pt),
+  outset: (y: 3pt),
+  radius: 2.5pt,
+  baseline: 0%,
+  text(fill: rgb("#1f2937"), style: "normal", weight: "regular", it)
+)
+
+#show raw.where(block: true): it => {
+  let lang = if it.has("lang") and it.lang != none and it.lang != "" {
+    upper(it.lang)
+  } else {
+    none
+  }
+
+  block(
+    width: 100%,
+    breakable: true,
+    above: 1.4em,
+    below: 1.4em,
+    stroke: (left: 2.5pt + rgb("#3b82f6"), rest: 0.5pt + rgb("#e5e7eb")),
+    fill: rgb("#f8fafc"),
+    radius: (right: 4pt),
+    inset: (x: 12pt, top: 10pt, bottom: 10pt),
+    [
+      #set text(style: "normal")
+      #set par(justify: false, first-line-indent: 0pt, leading: 0.6em)
+      #if lang != none [
+        #place(
+          top + right,
+          dx: 6pt,
+          dy: -4pt,
+          box(
+            fill: rgb("#e2e8f0"),
+            inset: (x: 5pt, y: 2.5pt),
+            radius: 3pt,
+            text(size: 6.5pt, weight: "bold", fill: rgb("#475569"), lang)
+          )
+        )
+      ]
+      #it
+    ]
+  )
+}
+
 
 // Heading hierarchy: Unboxed, clean LaTeX amsbook chapter and section styling
 #show heading.where(level: 1): it => block(above: 2.5em, below: 1.6em)[
