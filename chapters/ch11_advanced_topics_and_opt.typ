@@ -1,4 +1,4 @@
-#import "common.typ": bdefinition, btheorem, blemma, bproposition, bexample, bnotice
+#import "common.typ": bdefinition, btheorem, blemma, bproposition, bexample, bnotice, bexercise
 
 == Advanced Topics: Type Checking, Optimizations & Native Code Generation
 
@@ -71,3 +71,15 @@ syscall
 ```
 ]
 This mapping bridges high-level functional theory with physical silicon execution, completing the end-to-end journey from $lambda$-calculus to register hardware.
+
+=== Chapter Exercises
+
+#bexercise(caption: "Constant Folding AST Optimization", ref-source: "happy_pascal.pdf, Milestone 41")[
+  *Problem:* Implement a recursive optimization pass `foldConstants :: Expr -> Expr` on arithmetic expressions that collapses subtrees containing only constant integer literals into single literal nodes at compile time.
+]
+
+#bexercise(caption: "Short-Circuit Boolean Evaluation", ref-source: "happy_pascal.pdf, Milestone 38")[
+  *Problem:* Pascal's logical operators `and` and `or` can cause unwanted side effects or division-by-zero crashes if both operands are eagerly evaluated (e.g. `(y <> 0) and (x mod y == 0)`).
+  Formulate the conditional jump pattern that guarantees short-circuit execution on the stack machine.
+]
+

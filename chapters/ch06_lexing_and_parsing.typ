@@ -1,4 +1,4 @@
-#import "common.typ": bdefinition, btheorem, blemma, bproposition, bexample, bnotice
+#import "common.typ": bdefinition, btheorem, blemma, bproposition, bexample, bnotice, bexercise
 
 == Lexical & Syntactic Analysis: Alex & Happy in Practice
 
@@ -124,3 +124,23 @@ While Alex and Happy remain standard tools for deterministic LALR(1) grammars, m
 - *Advantage:* Grammars are written directly in native Haskell code without an external preprocessor phase.
 - *Typing:* Parsing actions are typed statically by GHC immediately, eliminating obscure post-code-generation type errors.
 - *Error Diagnostics:* Combinator parsers retain full monadic context, enabling highly descriptive error reports with expected symbol sets.
+
+=== Chapter Exercises
+
+#bexercise(caption: "Parenthesized Expression Parsing & Max Depth", ref-source: "compil_happy.pdf, Section 4.5 (paren-01, paren-02)")[
+  *Problem:*
+  1. Write a Happy grammar over tokens `'('` and `')'` that parses well-parenthesized expressions and returns the maximum nesting depth directly as an integer.
+  2. Explain how source position tracking via Alex's `%wrapper "posn"` enables accurate error diagnostics.
+]
+
+#bexercise(caption: "Lexical Identifiers in Context-Free Grammars", ref-source: "compil_happy.pdf, Section 4.5 (paren-04, paren-05)")[
+  *Problem:* In `paren-04`, the Happy grammar allows identifier tokens only at leaf positions:
+  ```haskell
+  Expr : {- empty -}             { Empty }
+       | ident                   { Leaf $1 }
+       | '(' Expr ')' Expr       { Node $2 $4 }
+  ```
+  1. Where are identifiers forbidden by this grammar? Give an example of an invalid string.
+  2. How can the grammar be refactored to allow arbitrary sequences of identifiers and parenthesized groups?
+]
+

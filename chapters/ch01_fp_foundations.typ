@@ -1,4 +1,4 @@
-#import "common.typ": bdefinition, bexample, blemma, bnotice, bproposition, btheorem
+#import "common.typ": bdefinition, bexample, blemma, bnotice, bproposition, btheorem, bexercise
 
 == Paradigms of Computation & Lambda Calculus
 
@@ -95,3 +95,19 @@ Haskell enforces a non-negotiable Hindley-Milner static type system. Types are r
   *"Well-typed programs cannot go wrong."*
   In a type-sound language, a program that successfully satisfies the static type checker will never encounter undefined run-time machine crashes, invalid memory interpretations, or type confusion errors at execution time.
 ]
+
+=== Chapter Exercises
+
+#bexercise(caption: "Function Invocation Syntax", ref-source: "intro_haskell.pdf, Slide 5")[
+  *Problem:* How do you invoke the recursive factorial function `fact` with the integer argument `5` in Haskell? Explain the syntactic difference between Haskell's application convention and traditional imperative languages.
+]
+
+#bexercise(caption: "First-Principles Currying & Uncurrying", ref-source: "intro_haskell.pdf, Slide 9")[
+  *Problem:* Implement the foundational functions `curry` and `uncurry` from first principles without using standard library shortcuts:
+  ```haskell
+  curry   :: ((a, b) -> c) -> a -> b -> c
+  uncurry :: (a -> b -> c) -> ((a, b) -> c)
+  ```
+  Demonstrate that they form an isomorphism by showing that $"curry" compose "uncurry" equiv "id"$ and $"uncurry" compose "curry" equiv "id"$.
+]
+

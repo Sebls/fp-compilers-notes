@@ -1,4 +1,4 @@
-#import "common.typ": bdefinition, btheorem, blemma, bproposition, bexample, bnotice
+#import "common.typ": bdefinition, btheorem, blemma, bproposition, bexample, bnotice, bexercise
 
 == Category Theoretic Abstractions: Functors, Applicatives & Monads
 
@@ -136,3 +136,37 @@ echoDo = do
 ```
 ]
 Notice that you cannot simply write `putStrLn (getLine)`: the static type checker catches the type mismatch between `IO String` and `String`, guaranteeing that untrusted impure interactions cannot infiltrate pure functions without being tracked in the type system.
+
+=== Chapter Exercises
+
+#bexercise(caption: "Formal Proof of Monad Laws for `Maybe`", ref-source: "intro_haskell.pdf, Slide 21")[
+  *Problem:* For the standard `Maybe` monad instance:
+  ```haskell
+  return x      = Just x
+  Nothing >>= _ = Nothing
+  Just x  >>= f = f x
+  ```
+  Prove analytically that the 3 categorical monad laws are satisfied for all values:
+  1. *Left Identity:* `return a >>= f` $equiv$ `f a`.
+  2. *Right Identity:* `m >>= return` $equiv$ `m`.
+  3. *Associativity:* `(m >>= f) >>= g` $equiv$ `m >>= (\x -> f x >>= g)`.
+]
+
+#bexercise(caption: "Peeling Monadic Structure (`join`)", ref-source: "intro_haskell.pdf, Slide 24")[
+  *Problem:* The flattening operation (peeling one monadic layer) is defined as:
+  ```haskell
+  join :: Monad m => m (m a) -> m a
+  ```
+  1. Implement `join` specifically by hand for `Maybe (Maybe a) -> Maybe a`.
+  2. Implement `join` universally for any arbitrary `Monad m` using only `(>>=)` and `id`.
+]
+
+#bexercise(caption: "List Monad Desugaring & Sequential I/O Printing", ref-source: "intro_haskell.pdf, Slide 26")[
+  *Problem:*
+  1. Desugar the following list comprehension `do`-block into explicit `(>>=)` and `return`, verifying the typing at each step:
+     ```haskell
+     do { x <- [1, 2]; y <- [1, 5]; return (x, y) }
+     ```
+  2. Implement a function `printAll :: [String] -> IO ()` that prints each string on a separate line using only pure recursion or monadic bind, without using `mapM_` from Prelude.
+]
+

@@ -1,4 +1,4 @@
-#import "common.typ": bdefinition, btheorem, blemma, bproposition, bexample, bnotice
+#import "common.typ": bdefinition, btheorem, blemma, bproposition, bexample, bnotice, bexercise
 
 == Algebraic Data Types & Recursive Data Modeling
 
@@ -96,3 +96,34 @@ totalHead Nil        = Nothing
 totalHead (Cons x _) = Just x
 ```
 The return type `Maybe a` informs both the compiler and downstream callers that failure is a possible outcome. The programmer is forced by the type checker to match and handle both `Nothing` and `Just` branches, completely eliminating null pointer exceptions at compile time.
+
+=== Chapter Exercises
+
+#bexercise(caption: "Polymorphic Constructor Inference", ref-source: "intro_haskell.pdf, Slide 8")[
+  *Problem:* Consider the polymorphic inductive data type:
+  ```haskell
+  data MaListe a = Vide | Elem a (MaListe a) deriving (Show)
+  ```
+  What is the deduced type of the nested expression `Elem Vide Vide` in GHCi? Explain how the Hindley-Milner type inference engine resolves this term.
+]
+
+#bexercise(caption: "Typeclass Analysis: `lookup`", ref-source: "intro_haskell.pdf, Slide 10")[
+  *Problem:* Analyze the full type signature of the association list lookup function:
+  ```haskell
+  lookup :: Eq a => a -> [(a, b)] -> Maybe b
+  ```
+  Explain:
+  1. Why the typeclass constraint `Eq a` is mathematically required.
+  2. Why the return type is `Maybe b` rather than simply `b` or throwing an exception.
+]
+
+#bexercise(caption: "Laboratory TP 0: Binary Trees and Traversals", ref-source: "intro_haskell.pdf, Slide 18 (TP 0)")[
+  *Problem:*
+  1. Define a polymorphic binary tree data type `Tree a` with empty leaves and value-bearing internal nodes.
+  2. Implement recursive functions computing:
+     - The height of the tree (`height :: Tree a -> Int`).
+     - The total number of nodes (`nbNodes :: Tree a -> Int`).
+     - The number of leaves (`nbLeaves :: Tree a -> Int`).
+  3. Implement the three canonical depth-first tree traversals returning `[a]`: in-order (infixe), pre-order (préfixe), and post-order (postfixe).
+]
+

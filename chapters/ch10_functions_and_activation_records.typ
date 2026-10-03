@@ -1,4 +1,4 @@
-#import "common.typ": bdefinition, btheorem, blemma, bproposition, bexample, bnotice
+#import "common.typ": bdefinition, btheorem, blemma, bproposition, bexample, bnotice, bexercise
 
 == Functions, Activation Records & Runtime Memory Management
 
@@ -79,3 +79,23 @@ factTail n = go n 1
 ```
 In GHC and production compilers, tail calls are compiled directly into assembly jump instructions (`jmp`), matching the performance of hand-optimized imperative loops.
 ]
+
+=== Chapter Exercises
+
+#bexercise(caption: "Recursive Function Activation & Factorial Emission", ref-source: "happy_pascal.pdf, Milestone 28 & intro_haskell.pdf, Slide 5")[
+  *Problem:* Outline the stack machine calling convention for the recursive function:
+  ```pascal
+  function fact(n: integer): integer;
+  begin
+    if n <= 1 then fact := 1 else fact := n * fact(n - 1)
+  end;
+  ```
+  Provide the symbolic assembly implementation with return address preservation and frame teardown.
+]
+
+#bexercise(caption: "Fibonacci: Naive Tree Recursion vs. Linear Accumulator", ref-source: "happy_pascal.pdf, Milestone 28")[
+  *Problem:*
+  1. Write the naive recursive Fibonacci function $F(n) = F(n-1) + F(n-2)$ and analyze its stack frame growth.
+  2. Implement an optimized linear tail-recursive accumulator version in Haskell and explain why it compiles to $cal(O)(1)$ stack memory.
+]
+

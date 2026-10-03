@@ -1,4 +1,4 @@
-#import "common.typ": bdefinition, btheorem, blemma, bproposition, bexample, bnotice
+#import "common.typ": bdefinition, btheorem, blemma, bproposition, bexample, bnotice, bexercise
 
 == Stack Machine Architecture: The 17-Instruction Virtual Machine
 
@@ -66,3 +66,15 @@ Hand-writing numeric byte offsets for `pc` jumps is notoriously brittle. The com
    BEZ exit_label
    ```
    If the value of `x` is zero, execution jumps directly to `exit_label`. Otherwise, control continues to the subsequent instruction.
+
+=== Chapter Exercises
+
+#bexercise(caption: "Relational Comparison on the 17-Instruction Machine", ref-source: "defmachine.pdf, Slide 9")[
+  *Problem:* The virtual machine does not possess a primitive comparison instruction (such as `<` or `CMP`). It provides only `BEZ` (branch if zero) and `BGZ` (branch if strictly positive).
+  Given two values $A$ and $B$ at the top of the stack (with $B$ above $A$), write a minimal symbolic assembly sequence computing the boolean test $A < B$, leaving $1$ on the stack if true and $0$ if false.
+]
+
+#bexercise(caption: "Manual Assembly Compilation: Euclidean GCD", ref-source: "happy_pascal.pdf, Milestone 14 & defmachine.pdf")[
+  *Problem:* Write the complete symbolic assembly program calculating the Greatest Common Divisor ($gcd$) of two integers read from standard input, using the Euclidean algorithm, and printing the result to `OUT`.
+]
+

@@ -1,4 +1,4 @@
-#import "common.typ": bdefinition, btheorem, blemma, bproposition, bexample, bnotice
+#import "common.typ": bdefinition, btheorem, blemma, bproposition, bexample, bnotice, bexercise
 
 == Code Generation: Compiling High-Level Languages to Stack Bytecode
 
@@ -95,3 +95,21 @@ ADD
 STORE
 ```
 This elegant uniformity allows nested array accesses, multi-dimensional buffer lookups, and pointer dereferencing using identical stack primitives.
+
+=== Chapter Exercises
+
+#bexercise(caption: "Recursive AST to Stack Bytecode Emission", ref-source: "happy_pascal.pdf, Milestones 1–6")[
+  *Problem:* Consider an arithmetic expression AST type:
+  ```haskell
+  data Op = Add | Sub | Mul | Div
+  data Expr = Lit Int | Var String | BinOp Op Expr Expr
+  ```
+  Write a pure code generation function `compileExpr :: Expr -> [String]` that emits assembly instructions maintaining the stack invariant (leaving exactly one result at the top of the operand stack).
+]
+
+#bexercise(caption: "Array Indexing L-Value & R-Value Emission", ref-source: "happy_pascal.pdf, Milestone 15 & defmachine.pdf")[
+  *Problem:*
+  1. Specify the stack assembly sequence to read the value of `primes[i + 1]`.
+  2. Specify the stack assembly sequence to execute the assignment `primes[i + 1] := 42;`.
+]
+

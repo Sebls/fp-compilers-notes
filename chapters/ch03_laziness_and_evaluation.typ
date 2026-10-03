@@ -1,4 +1,4 @@
-#import "common.typ": bdefinition, btheorem, blemma, bproposition, bexample, bnotice
+#import "common.typ": bdefinition, btheorem, blemma, bproposition, bexample, bnotice, bexercise
 
 == Evaluation Strategies & The Mechanics of Laziness
 
@@ -76,3 +76,26 @@ foldl' f !acc []     = acc
 foldl' f !acc (x:xs) = foldl' f (f acc x) xs
 ```
 Here, the bang pattern `!acc` forces the intermediate accumulator to be evaluated at each step, ensuring $cal(O)(1)$ auxiliary space complexity.
+
+=== Chapter Exercises
+
+#bexercise(caption: "Infinite Sequence Generation via Laziness", ref-source: "intro_haskell.pdf, Slide 11")[
+  *Problem:* Implement the infinite sequence of natural numbers $[1, 2, 3, 4, dots]$:
+  1. Using an explicit recursive generator function.
+  2. Using Haskell's core lazy list primitives (`iterate` and arithmetic sequences).
+]
+
+#bexercise(caption: "Higher-Order Consecutive Element Sums", ref-source: "intro_haskell.pdf, Slide 12")[
+  *Problem:* Write a point-free or lambda expression taking a list $l = [x_0, x_1, x_2, dots]$ and returning the pairwise consecutive sums $[x_0 + x_1, x_1 + x_2, dots]$. Analyze the typing and behavior of its constituent higher-order functions.
+]
+
+#bexercise(caption: "Quicksort and Operator Sections", ref-source: "intro_haskell.pdf, Slide 14")[
+  *Problem:* In the canonical Haskell Quicksort implementation:
+  ```haskell
+  qs :: Ord a => [a] -> [a]
+  qs []     = []
+  qs (p:tl) = (qs $ filter (< p) tl) ++ [p] ++ (qs $ filter (>= p) tl)
+  ```
+  Explain the syntax `(< p)` and `(>= p)`. What are operator sections, and why is parentheses placement crucial?
+]
+

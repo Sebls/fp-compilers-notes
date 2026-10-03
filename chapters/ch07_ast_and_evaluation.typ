@@ -1,4 +1,4 @@
-#import "common.typ": bdefinition, btheorem, blemma, bproposition, bexample, bnotice
+#import "common.typ": bdefinition, btheorem, blemma, bproposition, bexample, bnotice, bexercise
 
 == Abstract Syntax Trees & Expression Evaluation: The Calculator System
 
@@ -117,3 +117,16 @@ calcLoop env = do
           calcLoop nextEnv
 ```
 This architecture neatly decouples scanning, parsing, semantic evaluation, and stateful I/O into clean, mathematically testable components.
+
+=== Chapter Exercises
+
+#bexercise(caption: "Pure Arithmetic AST & Evaluator", ref-source: "compil_happy.pdf, Section 3.1–3.2")[
+  *Problem:*
+  1. Define a pure algebraic data type `AExpr` supporting floating-point literals (`Double`), unary negation, and the binary operators `+`, `-`, `*`, `/`, and `^`.
+  2. Implement an evaluator `eval :: AExpr -> Maybe Double` that safely returns `Nothing` when encountering a division by zero.
+]
+
+#bexercise(caption: "Environment-Based Evaluation & Variables", ref-source: "compil_happy.pdf, Section 3.4 & Section 5")[
+  *Problem:* Extend `AExpr` with variable names `Var String` and assignments `Assign String AExpr`. Formulate an evaluator `evalEnv :: [(String, Double)] -> AExpr -> Either String (Double, [(String, Double)])` that looks up bound variables, rejects unbound identifiers with a descriptive error message, and updates the environment upon assignment.
+]
+
