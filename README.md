@@ -81,12 +81,25 @@ The notes are written in [Typst](https://typst.app/) using the `latexy-book` pac
   ```
 
 ### Compilation
-To compile the publication-ready PDF:
-```bash
-typst compile main.typ main.pdf
-```
+This repository provides three standalone, publication-ready PDF documents:
+
+1. **Main Course Monograph** (`main.pdf`):
+   ```bash
+   typst compile main.typ main.pdf
+   ```
+
+2. **Complete Exercise Manual** (`exercises.pdf` — all lecture and laboratory exercises without solutions):
+   ```bash
+   typst compile exercises.typ exercises.pdf
+   ```
+
+3. **Complete Solutions Manual** (`solutions.pdf` — all exercises with step-by-step mathematical proofs and implementations):
+   ```bash
+   typst compile solutions.typ solutions.pdf
+   ```
 
 To watch for changes during editing:
 ```bash
 typst watch main.typ main.pdf
 ```
+
