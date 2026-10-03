@@ -224,21 +224,21 @@ This document serves as the exhaustive, rigorous *Solutions Manual* to accompany
   problem: [
     Consider the polymorphic inductive data type:
     ```haskell
-    data MaListe a = Vide | Elem a (MaListe a) deriving (Show)
+    data MyList a = Empty | Cons a (MyList a) deriving (Show)
     ```
-    What is the deduced type of the nested expression `Elem Vide Vide` in GHCi? Explain how the Hindley-Milner type inference engine resolves this term.
+    What is the deduced type of the nested expression `Cons Empty Empty` in GHCi? Explain how the Hindley-Milner type inference engine resolves this term.
   ],
   solution: [
-    In the definition of `Elem`, the constructor signature is:
+    In the definition of `Cons`, the constructor signature is:
     ```haskell
-    Elem :: a -> MaListe a -> MaListe a
+    Cons :: a -> MyList a -> MyList a
     ```
-    Here, the first argument is `Vide`, whose type is `MaListe b` for a fresh type variable $b$. The second argument is also `Vide`, whose type is `MaListe (MaListe b)`.
-    Substituting $a = "MaListe" space b$, the overall type of the expression is:
+    Here, the first argument is `Empty`, whose type is `MyList b` for a fresh type variable $b$. The second argument is also `Empty`, whose type is `MyList (MyList b)`.
+    Substituting $a = "MyList" space b$, the overall type of the expression is:
     ```haskell
-    Elem Vide Vide :: MaListe (MaListe b)
+    Cons Empty Empty :: MyList (MyList b)
     ```
-    It represents a list of lists of arbitrary elements $b$, containing exactly one element (the empty list `Vide`).
+    It represents a list of lists of arbitrary elements $b$, containing exactly one element (the empty list `Empty`).
   ]
 )
 
@@ -269,7 +269,7 @@ This document serves as the exhaustive, rigorous *Solutions Manual* to accompany
        - The height of the tree (`height :: Tree a -> Int`).
        - The total number of nodes (`nbNodes :: Tree a -> Int`).
        - The number of leaves (`nbLeaves :: Tree a -> Int`).
-    3. Implement the three canonical depth-first tree traversals returning `[a]`: in-order (infixe), pre-order (préfixe), and post-order (postfixe).
+    3. Implement the three canonical depth-first tree traversals returning `[a]`: in-order, pre-order, and post-order.
   ],
   solution: [
     ```haskell

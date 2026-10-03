@@ -102,9 +102,9 @@ The return type `Maybe a` informs both the compiler and downstream callers that 
 #bexercise(caption: "Polymorphic Constructor Inference", ref-source: "intro_haskell.pdf, Slide 8")[
   *Problem:* Consider the polymorphic inductive data type:
   ```haskell
-  data MaListe a = Vide | Elem a (MaListe a) deriving (Show)
+  data MyList a = Empty | Cons a (MyList a) deriving (Show)
   ```
-  What is the deduced type of the nested expression `Elem Vide Vide` in GHCi? Explain how the Hindley-Milner type inference engine resolves this term.
+  What is the deduced type of the nested expression `Cons Empty Empty` in GHCi? Explain how the Hindley-Milner type inference engine resolves this term.
 ]
 
 #bexercise(caption: "Typeclass Analysis: `lookup`", ref-source: "intro_haskell.pdf, Slide 10")[
@@ -124,6 +124,6 @@ The return type `Maybe a` informs both the compiler and downstream callers that 
      - The height of the tree (`height :: Tree a -> Int`).
      - The total number of nodes (`nbNodes :: Tree a -> Int`).
      - The number of leaves (`nbLeaves :: Tree a -> Int`).
-  3. Implement the three canonical depth-first tree traversals returning `[a]`: in-order (infixe), pre-order (préfixe), and post-order (postfixe).
+  3. Implement the three canonical depth-first tree traversals returning `[a]`: in-order, pre-order, and post-order.
 ]
 
