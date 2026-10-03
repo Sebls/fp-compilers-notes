@@ -1,12 +1,5 @@
 # Principles of Functional Programming & Compiler Construction
 
-> **Course Study Notes & Implementation Reference**  
-> *Option Informatique — Computer Science Master's (2025–2026)*
-
-This repository contains a self-contained, mathematically rigorous monograph on functional programming in Haskell and compiler construction. The notes bridge foundational programming language theory—from Church's $\lambda$-calculus, Milner's type systems, and category-theoretic monadic effects—to the physical mechanics of virtual stack machines, activation records, and native x86-64 assembly generation.
-
----
-
 ## Curriculum Overview
 
 The monograph is organized into three major parts and an appendix of laboratory problem sets:
